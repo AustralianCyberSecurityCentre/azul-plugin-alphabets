@@ -1,1 +1,1 @@
-azul-runner>=4.0.0
+azul-runner>=9.0.0
