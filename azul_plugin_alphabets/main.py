@@ -25,6 +25,7 @@ class AzulPluginAlphabets(BinaryPlugin):
         Feature(name="b85_alphabet", desc="Possible base85 alphabet", type=str),
         Feature(name="b85_alphabet_count", desc="Count of possible base85 alphabets", type=int),
     ]
+    SECURITY = "MORE OFFICIAL REL:APPLE,DOG"
 
     def filter_lengths(self, lengths, strings):
         """Filter the list of strings based on their length."""
