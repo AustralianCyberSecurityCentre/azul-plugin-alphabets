@@ -16,7 +16,7 @@ class AzulPluginAlphabets(BinaryPlugin):
     """Find character runs consistent with possible encoding schemes (base64, etc)."""
 
     CONTACT = "ASD's ACSC"
-    VERSION = "2024.04.29"
+    VERSION = "2025.12.10"
     FEATURES = [
         Feature(name="b32_alphabet", desc="Possible base32 alphabet", type=str),
         Feature(name="b32_alphabet_count", desc="Count of possible base32 alphabets", type=int),
