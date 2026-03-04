@@ -7,7 +7,7 @@ The plugin supports the following encoding schemes:
     * base85
 """
 
-from azul_runner import BinaryPlugin, Feature, Job, cmdline_run
+from azul_runner import FV, BinaryPlugin, Feature, Job, cmdline_run
 
 from . import b64_alphabet_finder
 
@@ -33,7 +33,9 @@ class AzulPluginAlphabets(BinaryPlugin):
     def execute(self, job: Job):
         """Search for alphabets in the supplied entity's content."""
         features = {}
-        res = b64_alphabet_finder.find_basen_alphabets(job.get_data().read())
+        res: dict[b64_alphabet_finder.Alphabet] = b64_alphabet_finder.find_basen_alphabets(job.get_data().read())
+        
+        #TODO: convert Alphabet to FV
         if res:
             features["b32_alphabet"] = self.filter_lengths([32], res)
             features["b64_alphabet"] = self.filter_lengths([64, 65], res)
