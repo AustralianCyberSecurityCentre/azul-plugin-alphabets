@@ -4,19 +4,27 @@ from __future__ import print_function
 
 import dataclasses
 import os
-import re
 import sys
 
 VALID = set([c for c in range(0x20, 0x7F)])
 
+
 @dataclasses.dataclass
 class Alphabet:
+    """Store data related to an alphabet located in a file."""
+
     value: str
     offset: int
     size: int
-    
-    def __str__(self):
-        return f"{self.value} size={self.size} offset={self.offset}"
+
+    def __str__(self) -> str:
+        """Represent an Alphabet as a string.
+
+        Returns:
+            str: String including alphabet content, size, and offset"
+        """
+        return f"{self.value} size={self.size} offset=0x{self.offset:x}"
+
 
 def bufset(b: bytes) -> set[int]:
     """Bufset converts a byte string to a set of ints."""
@@ -36,18 +44,18 @@ def find_basen_alphabets(buf: bytes, acceptable_lengths=(32, 64, 65, 85)) -> lis
     Use of the keyword argument "acceptable_lengths" will allow finding
     alternate baseN alphabets. Default = [32, 64, 65, 85].
     """
-    res: list[str] = []
+    res: list[Alphabet] = []
     for split_char in (b"\0", b'"', b"'", b"\n", b"\r\n"):
         idx: int = 0
         while idx < len(buf):
-            if buf[idx] != split_char:
+            if buf[idx : idx + len(split_char)] != split_char:
                 start: int = idx
-                while buf[idx] != split_char:
+                while idx < len(buf) and buf[idx : idx + len(split_char)] != split_char:
                     idx += 1
                 chunk = buf[start:idx]
                 if len(chunk) in acceptable_lengths:
                     if is_basen_alphabet(chunk) and chunk not in res:
-                        value=chunk.decode()
+                        value = chunk.decode()
                         res.append(Alphabet(value=value, offset=start, size=len(value)))
             idx += 1
     return res
