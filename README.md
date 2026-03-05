@@ -36,7 +36,7 @@ COMPLETED
 
 events (1)
 
-event for 37e0bf894e33713524a22dfb97f7ec5abe8c81c72602c491e86abf2ea1739979:None
+event for test.exe:None
   {}
   output features:
           b32_alphabet:  #$)034:;?ABCDFGJLNOQUVWY[\_cdei @ 0xb280b46 (offset)
