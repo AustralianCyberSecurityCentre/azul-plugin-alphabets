@@ -21,7 +21,7 @@ class Alphabet:
         """Represent an Alphabet as a string.
 
         Returns:
-            str: String including alphabet content, size, and offset"
+            str: String including alphabet content, size, and offset
         """
         return f"{self.value} size={self.size} offset=0x{self.offset:x}"
 
