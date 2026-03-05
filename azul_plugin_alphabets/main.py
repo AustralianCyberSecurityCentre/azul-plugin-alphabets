@@ -27,7 +27,7 @@ class AzulPluginAlphabets(BinaryPlugin):
     ]
 
     def filter_lengths(self, lengths, alphabets: list[b64_alphabet_finder.Alphabet]) -> list[FV]:
-        """Filter the list of strings based on their length."""
+        """Filter the list of alphabets based on their length."""
         return [FV(value=a.value, offset=a.offset, size=a.size) for a in alphabets if a.size in lengths]
 
     def execute(self, job: Job):
