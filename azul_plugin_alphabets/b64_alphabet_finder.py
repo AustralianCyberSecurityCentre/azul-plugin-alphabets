@@ -55,8 +55,8 @@ def find_basen_alphabets(buf: bytes, acceptable_lengths=(32, 64, 65, 85)) -> lis
                 chunk = buf[start:idx]
                 if len(chunk) in acceptable_lengths:
                     if is_basen_alphabet(chunk) and chunk not in res:
-                        value = chunk.decode()
-                        res.append(Alphabet(value=value, offset=start, size=len(value)))
+                        alphabet = chunk.decode()
+                        res.append(Alphabet(value=alphabet, offset=start, size=len(alphabet)))
             idx += 1
     return res
 
