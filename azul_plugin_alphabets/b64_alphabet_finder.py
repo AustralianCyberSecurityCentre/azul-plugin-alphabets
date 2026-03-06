@@ -50,9 +50,9 @@ def find_basen_alphabets(buf: bytes, acceptable_lengths=(32, 64, 65, 85)) -> lis
         while idx < len(buf):
             if buf[idx : idx + len(split_char)] != split_char:
                 start: int = idx
-                while idx < len(buf) and buf[idx : idx + len(split_char)] != split_char:
-                    idx += 1
-                chunk = buf[start:idx]
+                idx = buf.find(split_char, idx)
+                idx = len(buf) if idx == -1 else idx
+                chunk: bytes = buf[start:idx]
                 if len(chunk) in acceptable_lengths:
                     if is_basen_alphabet(chunk) and chunk not in res:
                         alphabet = chunk.decode()
