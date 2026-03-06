@@ -7,7 +7,7 @@ The plugin supports the following encoding schemes:
     * base85
 """
 
-from azul_runner import BinaryPlugin, Feature, Job, cmdline_run
+from azul_runner import FV, BinaryPlugin, Feature, FeatureType, Job, cmdline_run
 
 from . import b64_alphabet_finder
 
@@ -16,24 +16,25 @@ class AzulPluginAlphabets(BinaryPlugin):
     """Find character runs consistent with possible encoding schemes (base64, etc)."""
 
     CONTACT = "ASD's ACSC"
-    VERSION = "2024.04.29"
+    VERSION = "2025.03.06"
     FEATURES = [
-        Feature(name="b32_alphabet", desc="Possible base32 alphabet", type=str),
-        Feature(name="b32_alphabet_count", desc="Count of possible base32 alphabets", type=int),
-        Feature(name="b64_alphabet", desc="Possible base64 alphabet", type=str),
-        Feature(name="b64_alphabet_count", desc="Count of possible base64 alphabets", type=int),
-        Feature(name="b85_alphabet", desc="Possible base85 alphabet", type=str),
-        Feature(name="b85_alphabet_count", desc="Count of possible base85 alphabets", type=int),
+        Feature(name="b32_alphabet", desc="Possible base32 alphabet", type=FeatureType.String),
+        Feature(name="b32_alphabet_count", desc="Count of possible base32 alphabets", type=FeatureType.Integer),
+        Feature(name="b64_alphabet", desc="Possible base64 alphabet", type=FeatureType.String),
+        Feature(name="b64_alphabet_count", desc="Count of possible base64 alphabets", type=FeatureType.Integer),
+        Feature(name="b85_alphabet", desc="Possible base85 alphabet", type=FeatureType.String),
+        Feature(name="b85_alphabet_count", desc="Count of possible base85 alphabets", type=FeatureType.Integer),
     ]
 
-    def filter_lengths(self, lengths, strings):
-        """Filter the list of strings based on their length."""
-        return [x for x in strings if len(x) in lengths]
+    def filter_lengths(self, lengths, alphabets: list[b64_alphabet_finder.Alphabet]) -> list[FV]:
+        """Filter the list of alphabets based on their length."""
+        return [FV(value=a.value, offset=a.offset, size=a.size) for a in alphabets if a.size in lengths]
 
     def execute(self, job: Job):
         """Search for alphabets in the supplied entity's content."""
         features = {}
-        res = b64_alphabet_finder.find_basen_alphabets(job.get_data().read())
+        res: list[b64_alphabet_finder.Alphabet] = b64_alphabet_finder.find_basen_alphabets(job.get_data().read())
+
         if res:
             features["b32_alphabet"] = self.filter_lengths([32], res)
             features["b64_alphabet"] = self.filter_lengths([64, 65], res)

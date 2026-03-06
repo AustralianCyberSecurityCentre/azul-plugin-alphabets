@@ -18,27 +18,45 @@ To install azul-plugin-alphabets for development run the command
 pip install -e .
 ```
 
-## Usage: azul-alphabet-finder
+## Usage: azul-plugin-alphabets
 
 Features found alphabets.
 
 Usage on local files:
 
 ```
-azul-alphabets test.exe
+azul-plugin-alphabets test.exe
 ```
 
 Example Output:
 
 ```
------ Alphabets results -----
-OK
+----- AzulPluginAlphabets results -----
+COMPLETED
 
-Output features:
-        b64_alphabet: ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/
-  b64_alphabet_count: 1
+events (1)
+
+event for test.exe:None
+  {}
+  output features:
+          b32_alphabet:  #$)034:;?ABCDFGJLNOQUVWY[\_cdei @ 0xb280b46 (offset)
+                        =>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\ @ 0xb33371d (offset)
+                        DEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abc @ 0xb071b30 (offset)
+                        DEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abc @ 0xb073c30 (offset)
+    b32_alphabet_count: 4
+          b64_alphabet: ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+- @ 0xb073d28 (offset)
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/ @ 0x79c4a40 (offset)
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/ @ 0x7a59a60 (offset)
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/ @ 0xb4bae20 (offset)
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/ @ 0xb4d3e80 (offset)
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_ @ 0xb3b6ba0 (offset)
+                        ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_ @ 0xb3b74e0 (offset)
+                        abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+-. @ 0x75bde68 (offset)
+    b64_alphabet_count: 8
 
 Feature key:
+  b32_alphabet:  Possible base32 alphabet
+  b32_alphabet_count:  Count of possible base32 alphabets
   b64_alphabet:  Possible base64 alphabet
   b64_alphabet_count:  Count of possible base64 alphabets
 ```
@@ -46,7 +64,7 @@ Feature key:
 Automated usage in system:
 
 ```
-azul-alphabet-finder --server http://azul-dispatcher.localnet/
+azul-plugin-alphabets --server http://azul-dispatcher.localnet/
 ```
 
 ## Python Package management
