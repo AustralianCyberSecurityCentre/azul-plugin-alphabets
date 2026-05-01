@@ -25,8 +25,7 @@ class TestAlphabets(test_template.TestPlugin):
                 state=State(State.Label.COMPLETED),
                 events=[
                     Event(
-                        entity_type="binary",
-                        entity_id="d9a439d09551b62af7c289a39a8c26f7e85f510cf8232546150b99258b2263b1",
+                        sha256="d9a439d09551b62af7c289a39a8c26f7e85f510cf8232546150b99258b2263b1",
                         features={
                             "b64_alphabet": [
                                 FV(
@@ -59,8 +58,7 @@ class TestAlphabets(test_template.TestPlugin):
                 state=State(State.Label.COMPLETED),
                 events=[
                     Event(
-                        entity_type="binary",
-                        entity_id="9b553d89abf7aa93fad2c82546549e467cf8a954397ab9c2837d89df914dad7c",
+                        sha256="9b553d89abf7aa93fad2c82546549e467cf8a954397ab9c2837d89df914dad7c",
                         features={
                             "b32_alphabet": [
                                 FV(
