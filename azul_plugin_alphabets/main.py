@@ -34,8 +34,6 @@ class AzulPluginAlphabets(BinaryPlugin):
         """Search for alphabets in the supplied entity's content."""
         features = {}
         job_data = job.get_data()
-        if job_data is None:
-            return
 
         res: list[b64_alphabet_finder.Alphabet] = b64_alphabet_finder.find_basen_alphabets(job_data.read())
 
